@@ -56,6 +56,9 @@
 - API: `https://pokeapi.co/api/v2/pokemon/{pokemon-name}`
   - Eg: `https://pokeapi.co/api/v2/pokemon/bulbasaur`
 - That API will return all the data that you need on this page
+- You will get the large Pokemon artwork from:
+  - `https://img.pokemondb.net/artwork/bulbasaur.jpg`
+ - Clicking on the Home >> link should return you to the Home Page.
 - You will need to create a `Type Component` similar to the `Tag Component` in our Trello Board App. 
   - This component will always have a particular `backgroundColor` for the particular type.
   - You will be doing something like the following:
