@@ -800,10 +800,10 @@
 	"Guzzlord",
 	"Necrozma",
 	"Magearna",
-  "Marshadow",
-  "poipole",
-  "naganadel",
-  "stakataka",
-  "blacephalon",
-  "zeraora"
+  	"Marshadow",
+  	"Poipole",
+  	"Naganadel",
+  	"Stakataka",
+  	"Blacephalon",
+  	"Zeraora"
 ]
