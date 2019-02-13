@@ -1,0 +1,23 @@
+.statName{
+  color:gray;
+  font-size: 22px;
+}
+.statNum{
+  font-size: 27px;
+}
+.moves{
+  font-size: 18px;
+}
+.border-2 {
+  border-width:2px !important;
+}
+.border-purple{
+  border-color: purple !important;
+}
+.text-purple{
+  color:purple !important;
+}
+.sub-title{
+  font-size: 20px;
+  word-spacing: 10px;
+}
