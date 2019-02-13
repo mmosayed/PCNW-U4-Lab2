@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Component1 from './components/Comp1'
 import Component2 from './components/Comp2'
+import StatView from './components/StatView'
 import './App.css';
 const {pokemons} = require('./pkmn-list')
 
@@ -9,6 +10,8 @@ class App extends Component {
     super(props)
     this.state = {
       offset:0,
+      currentPokemon: '',
+      currentPage: 'stat', //OR stat 
       results: [
         {
           "name": "bulbasaur",
@@ -92,24 +95,38 @@ class App extends Component {
         }
       ]
     }
+    
   }
-  
-  
+
+  toList = () =>{
+    this.setState({currentPage:'list'});
+  }
   showMore = (obj) =>{
     this.setState(obj)  
   }
+
+//METHOD THAT HANDLES COMPONENT2 ON CLICK TO SWAP STATE.CURRENTPAGE TO STAT and SEND POKEMON NAME TO STATE
+  
+  View = () =>{
+    if(this.state.currentPage === 'list'){
+      return <>
+      <Component2 results={this.state.results} showMore={this.showMore} offset={this.state.offset} /> 
+            </>
+    }
+    else{
+      return <>
+        <StatView toList={this.toList}/>
+      </>
+    }
+  }
+
 
   
   render() {
     return (
       <>
       <Component1 pokemons={pokemons}  />
-      <Component2 results={this.state.results} showMore={this.showMore} offset={this.state.offset} />
-      
-      
-        
-      
-      
+      <this.View />  
      </>
     )
   
