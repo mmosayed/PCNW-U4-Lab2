@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import './StatView.css';
+import MoveInfo from './MoveInfo'
 
 class StatView extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class StatView extends Component {
       moves: [],
       movesMethod: [],
       types: [],
+      currentMove: '',
     }
   }
   //Takes in pokemon name
@@ -51,62 +53,80 @@ class StatView extends Component {
   toList = () => {
     this.props.toList();
   }
-  pokeStats = () => {
+  closeMove = () => {
+    this.setState({ currentMove: '' })
+  }
+  PokeStats = () => {
     let statList = ['Hp', 'Attack', 'Defense', 'Sp.Attack', 'Sp.Defense', 'Speed']
     return statList.map((e, i) => {
       return (<>
-        <div className='col-2 statName d-flex justify-content-around'>
-          {statList[i]}
+        <div className='col-2 statName d-flex justify-content-around' key={i}>
+          {e}
         </div>
       </>)
     })
   }
-  pokeNum = () => {
+  PokeNum = () => {
     let statNum = [this.state.hp, this.state.att, this.state.def, this.state.spatt, this.state.spdef, this.state.speed]
     return statNum.map((e, i) => {
       return (<>
-        <div className='col-2 statNum d-flex justify-content-around'>
-          {statNum[i]}
+        <div className='col-2 statNum d-flex justify-content-around' key={i}>
+          {e}
         </div>
       </>)
     })
   }
-  moveList = () => {
+
+  getMoves = (e) => {
+    console.log(e.currentTarget.innerText);
+    this.setState({ currentMove: e.currentTarget.innerText })
+  }
+  ShowMoves = () => {
+    if (this.state.currentMove === '') {
+      return (<></>)
+    }
+    else {
+      return <MoveInfo moveName={this.state.currentMove} closeMove={this.closeMove} />
+    }
+  }
+
+  MoveList = () => {
     return this.state.moves.map((e, i) => {
-      if(this.state.movesMethod[i]==='egg'){
+      if (this.state.movesMethod[i] === 'egg') {
         return (<>
-          <div className='col-3 pt-1 pb-1 d-flex justify-content-around border border-2 border-info rounded-pill moves'>
-            {this.state.moves[i]}
+          <div className='col-3 pt-1 pb-1 d-flex justify-content-around border border-2 border-info rounded-pill moves' key={i} onClick={this.getMoves}>
+            {e}
           </div>
         </>)
       }
-      if(this.state.movesMethod[i]==='machine'){
+      if (this.state.movesMethod[i] === 'machine') {
         return (<>
-          <div className='col-3 pt-1 pb-1 d-flex justify-content-around border border-2 border-success rounded-pill moves'>
-            {this.state.moves[i]}
+          <div className='col-3 pt-1 pb-1 d-flex justify-content-around border border-2 border-success rounded-pill moves' key={i} onClick={this.getMoves}>
+            {e}
           </div>
         </>)
       }
-      if(this.state.movesMethod[i]==='tutor'){
+      if (this.state.movesMethod[i] === 'tutor') {
         return (<>
-          <div className='col-3 pt-1 pb-1 d-flex justify-content-around border border-2 border-warning rounded-pill moves'>
-            {this.state.moves[i]}
+          <div className='col-3 pt-1 pb-1 d-flex justify-content-around border border-2 border-warning rounded-pill moves' key={i} onClick={this.getMoves}>
+            {e}
           </div>
         </>)
       }
-      if(this.state.movesMethod[i]==='level-up'){
+      if (this.state.movesMethod[i] === 'level-up') {
         return (<>
-          <div className='col-3 pt-1 pb-1 d-flex justify-content-around border border-2 border-purple rounded-pill moves'>
-            {this.state.moves[i]}
+          <div className='col-3 pt-1 pb-1 d-flex justify-content-around border border-2 border-purple rounded-pill moves' key={i} onClick={this.getMoves}>
+            {e}
           </div>
         </>)
       }
-      
     })
   }
 
+
   render() {
-    this.getPokemon();
+    if (this.state.hp === 0)
+      this.getPokemon()
     return (
       <>
         <nav aria-label="breadcrumb">
@@ -115,16 +135,14 @@ class StatView extends Component {
             <li className="breadcrumb-item active" aria-current="page">CurrentPokemon</li>
           </ol>
         </nav>
-
         <div className='container border border-primary rounded-pill d-flex justify-content-around'>
           <h2 className='title'>Stats</h2>
           <div className='row flex-wrap '>
-            <this.pokeStats />
-            <this.pokeNum />
+            <this.PokeStats />
+            <this.PokeNum />
           </div>
         </div>
         <div className='container'>
-
           <h2 className='title '>Moves</h2>
           <span className='sub-title'>Learned by </span>
           <span className='sub-title text-info'>Egg </span>
@@ -133,17 +151,13 @@ class StatView extends Component {
           <span className='sub-title text-purple'>Level-up </span>
           <p></p>
           <div className='row flex-wrap '>
-            <this.moveList />
+            <this.MoveList />
           </div>
         </div>
+        <this.ShowMoves />
       </>
     )
   }
 
 }
-
-
-
-
-
 export default StatView;
