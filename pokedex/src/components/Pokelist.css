@@ -1,0 +1,22 @@
+.borderrow {
+    min-height:25px;
+     display: flex;
+     flex-wrap: wrap;
+     text-align: center;
+     border-style: solid;
+     border-color: #e5e4e3;
+     border-radius: 10px;
+     border-width: 1px;
+     margin:0.5% 22%;
+ }
+
+ .comp2-12{
+     width: 100%;
+     margin: auto;
+     width: 60%;
+     
+ }
+
+ .tohover:hover {
+    background-color:#ffdab5
+ }
