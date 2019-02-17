@@ -21,8 +21,10 @@ class StatView extends Component {
     }
   }
   //Takes in pokemon name
-  getPokemon = () => {
-    axios.get('https://pokeapi.co/api/v2/pokemon/bulbasaur')
+  getPokemon = (pokemon) => {
+    if (pokemon === ''){return}
+    else{
+    axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
       .then(res => {
         let data = res.data;
         let sprites = [data.sprites.front_default, data.sprites.front_shiny, data.sprites.back_default, data.sprites.back_shiny];
@@ -50,6 +52,7 @@ class StatView extends Component {
         })
       })
   }
+}
   toList = () => {
     this.props.toList();
   }
@@ -78,7 +81,6 @@ class StatView extends Component {
   }
 
   getMoves = (e) => {
-    console.log(e.currentTarget.innerText);
     this.setState({ currentMove: e.currentTarget.innerText })
   }
   ShowMoves = () => {
@@ -122,17 +124,24 @@ class StatView extends Component {
       }
     })
   }
-
+  componentDidMount(){
+    this.getPokemon(this.props.pokemon)
+  }
+  componentDidUpdate(prevProps){
+    if(this.props.pokemon !== prevProps.pokemon){
+      this.getPokemon(this.props.pokemon)
+    }
+  }
+  
 
   render() {
-    if (this.state.hp === 0)
-      this.getPokemon()
+    
     return (
       <>
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item" onClick={this.toList}><a href="#">Home</a></li>
-            <li className="breadcrumb-item active" aria-current="page">CurrentPokemon</li>
+            <li className="breadcrumb-item active" aria-current="page">{this.props.pokemon}</li>
           </ol>
         </nav>
         <div className='container border border-primary rounded-pill d-flex justify-content-around'>
