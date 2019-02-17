@@ -10,7 +10,7 @@ const pokeList = (results,changeState)=>{
         else if(num.length === 3) num = "# 0" + (e["url"].slice(34,36))
         else if(num.length === 4) num = "# " + (e["url"].slice(34,37))
         return <>
-            <div className='tohover borderrow' onClick={event=>{changeState({currentPokemon:e["name"],currentPage:'state'})}}> 
+            <div className='tohover borderrow' onClick={event=>{changeState({currentPokemon:e["name"],currentPage:'stat'})}}> 
                 <div className='col-6'>
                     <img src={img} alt="pokemon"/> 
                     {e["name"]}
@@ -25,7 +25,6 @@ const pokeList = (results,changeState)=>{
 const Component2 = props =>{
     return <>
     {pokeList(props.results,props.changeState)}
-    
     <div className='borderrow' style={{'border-style':'none'}}>
         <div className='col'>
         <LoadButton changeState={props.changeState} offset={props.offset} results={props.results} />

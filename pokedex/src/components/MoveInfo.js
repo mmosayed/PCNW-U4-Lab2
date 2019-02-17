@@ -17,9 +17,8 @@ const MoveInfo = (props) => {
             <div class="h-100 m-50 row align-items-center  modal-dialog">
               <div class="col modal-content text-center">
                 <div class="modal-header">
-
                   <h3 class="modal-title">{props.moveName}</h3>
-                  <button type="button" class="close" onClick={props.closeMove} data-dismiss="modal" aria-label="Close">
+                  <button type="button" class="close" onClick={props.closeMove} aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -29,7 +28,6 @@ const MoveInfo = (props) => {
                 <h4>PP: {moveInfo['pp']}</h4>
                 <div class="modal-footer"></div>
               </div>
-
             </div>
           </div>
         </>

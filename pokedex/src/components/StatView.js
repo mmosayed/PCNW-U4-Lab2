@@ -54,6 +54,7 @@ class StatView extends Component {
   }
 }
   toList = () => {
+    localStorage.setItem('currentPage', 'list');
     this.props.toList();
   }
   closeMove = () => {

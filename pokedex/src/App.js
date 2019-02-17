@@ -34,11 +34,12 @@ class App extends Component {
     axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`)
     .then(response=>{
        //const updatedResults = results.concat(response.data.results)
-       this.setState({offset:0,currentPokemon: '',currentPage: 'list',results:response.data.results})
+       this.setState({offset:0,currentPokemon: localStorage.getItem('currentPokemon'),currentPage: localStorage.getItem('currentPage'),results:response.data.results})
     })
   }
   
   toList = () =>{
+    localStorage.setItem('currentPage', 'list');
     this.setState({currentPage:'list'});
   }
   
@@ -50,11 +51,14 @@ class App extends Component {
   
   View = () =>{
     if(this.state.currentPage === 'list'){
+      localStorage.setItem('currentPokemon', this.state.currentPokemon);
       return <>
-      <Pokelist results={this.state.results} changeState={this.changeState} offset={this.state.offset} /> 
-            </>
+        <Pokelist results={this.state.results} changeState={this.changeState} offset={this.state.offset} /> 
+      </>
     }
     else{
+      localStorage.setItem('currentPokemon', this.state.currentPokemon);
+      localStorage.setItem('currentPage', 'stat');
       return <>
         <StatView toList={this.toList} pokemon={this.state.currentPokemon}/>
       </>

@@ -35,6 +35,8 @@ class Component1 extends Component{
             this.setState({search:[]})
         }
         else if(e.keyCode === 13){
+            localStorage.setItem('currentPage', 'stat');
+            localStorage.setItem('currentPokemon', this.state.search[0].toLowerCase());
             if(this.state.search.length !== 0) this.props.changeState({currentPokemon:this.state.search[0].toLowerCase(),currentPage:'stat'})
         }
     }
