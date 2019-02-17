@@ -35,7 +35,7 @@ class Component1 extends Component{
             this.setState({search:[]})
         }
         else if(e.keyCode === 13){
-            if(this.state.search.length !== 0) this.props.changeState({currentPokemon:this.state.search[0],currentPage:'stat'})
+            if(this.state.search.length !== 0) this.props.changeState({currentPokemon:this.state.search[0].toLowerCase(),currentPage:'stat'})
         }
     }
 
@@ -43,7 +43,7 @@ class Component1 extends Component{
         if(this.state.search.length !== 0){
             return <div id='overlay' className="card border-light mb-3">
                 <div class="card-body text-light">
-                {this.state.search.map(poke=>{return <p onClick={e=>{this.props.changeState({currentPokemon:poke,currentPage:'stat'})}} class="card-text">{poke}</p>})}
+                {this.state.search.map(poke=>{return <p onClick={e=>{this.props.changeState({currentPokemon:poke.toLowerCase(),currentPage:'stat'})}} class="card-text">{poke}</p>})}
                 </div>
                 </div>
         }
@@ -52,7 +52,7 @@ class Component1 extends Component{
 
     render(){
         return <>
-        <div className="row">
+        <div className="row myrow">
             <div className="col-12 topred"></div>
         <div className="col-2">
             <img style={{float:'left'}} className='img' alt='pokeball' src="https://i.ebayimg.com/images/g/HCgAAOxy63FSrBOH/s-l300.jpg"/>

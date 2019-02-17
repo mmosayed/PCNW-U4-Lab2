@@ -14,7 +14,7 @@ const MoveInfo = (props) => {
       return (
         <>
           <div className=' overlay'>
-            <div class="h-100 row align-items-center  modal-dialog">
+            <div class="h-100 m-50 row align-items-center  modal-dialog">
               <div class="col modal-content text-center">
                 <div class="modal-header">
 

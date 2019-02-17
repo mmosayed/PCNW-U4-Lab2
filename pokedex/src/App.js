@@ -14,7 +14,7 @@ class App extends Component {
       /* this is example state */
       // offset:0,
       // currentPokemon: '',
-      // currentPage: 'stat', //OR stat 
+      // currentPage: 'list', //OR stat 
       // results: [
       //   {
       //     "name": "bulbasaur",
@@ -34,7 +34,7 @@ class App extends Component {
     axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20`)
     .then(response=>{
        //const updatedResults = results.concat(response.data.results)
-       this.setState({offset:0,currentPokemon: '',currentPage: 'stat',results:response.data.results})
+       this.setState({offset:0,currentPokemon: '',currentPage: 'list',results:response.data.results})
     })
   }
   
@@ -56,7 +56,7 @@ class App extends Component {
     }
     else{
       return <>
-        <StatView toList={this.toList} /*currentPokemon={this.state.currentPokemon}*//>
+        <StatView toList={this.toList} pokemon={this.state.currentPokemon}/>
       </>
     }
   }
@@ -70,9 +70,7 @@ class App extends Component {
       <this.View />  
      </>
     )
-  
   }
-  
 }
 
 
